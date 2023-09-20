@@ -1,23 +1,36 @@
-import './App.css';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 
+];
 export default function App() {
+  const [guestName, setGuestName] = useState('');
+  const [guestLastName, setGuestLastName] = useState('');
+
+  const [updateGuest, setUpdateGuest] = useState('');
+  const handleGuestName = (event) => {
+    if (event.key === 'Enter') {
+      const fullName = `${guestName} ${guestLastName}`;
+      return setUpdateGuest(fullName);
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input
+        placeholder="First name"
+        value={guestName}
+        onChange={(event) => {
+          setGuestName(event.currentTarget.value);
+        }}
+      />
+      <input
+        placeholder="Last name"
+        value={guestLastName}
+        onChange={(event) => {
+          setGuestLastName(event.currentTarget.value);
+        }}
+        onKeyDown={handleGuestName}
+      />
+      <button onClick={handleGuestName}>Return</button>
+      <div>{updateGuest}</div>
     </div>
   );
 }
