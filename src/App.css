@@ -1,0 +1,8 @@
+input {
+  height: 5vh;
+  width: 30vh;
+}
+
+.GuestContainer {
+  background-color: tomato;
+}
