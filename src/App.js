@@ -1,36 +1,42 @@
 import './App.css';
 import { useState } from 'react';
 
+const baseUrl = 'http://localhost:4000';
+const response = await fetch(`${baseUrl}/guests`);
+const allGuests = await response.json();
+
 export default function App() {
   const [guestName, setGuestName] = useState('');
   const [guestLastName, setGuestLastName] = useState('');
-  const [users, setUsers] = useState([]);
-  const [attending, setAttending] = useState(false);
-  const handleGuestAttend = (isAttending) => {
-    return isAttending ? 'attend' : 'not attending';
+  const [guest, setGuest] = useState([]);
+
+  const handleGuestAttend = (index) => {
+    const updateAttending = [...guest];
+    updateAttending[index].attend = !updateAttending[index].attend;
+    setGuest(updateAttending);
   };
   const handleGuestName = (event) => {
     if (event.key === 'Enter') {
-      const newGuestId = users.length > 0 ? users[users.length - 1].id + 1 : 1;
+      const newGuestId = guest.length > 0 ? guest[guest.length - 1].id + 1 : 1;
       const newGuest = {
         id: newGuestId,
         name: {
           firstName: guestName,
           lastName: guestLastName,
         },
-        attend: handleGuestAttend(attending),
+        attend: false,
       };
-      setUsers([...users, newGuest]);
+      setGuest([...guest, newGuest]);
       console.log(newGuest);
       setGuestName('');
       setGuestLastName('');
     }
   };
   const handleDeleteUser = (indexToDelete) => {
-    const updatedUsers = [...users];
+    const updatedUsers = [...guest];
     updatedUsers.splice(indexToDelete, 1);
 
-    setUsers(updatedUsers);
+    setGuest(updatedUsers);
   };
 
   return (
@@ -46,6 +52,8 @@ export default function App() {
           required
         />
       </label>
+      <br />
+
       <label htmlFor="lastName" data-test-id="guest">
         <input
           data-test-id="guest"
@@ -58,8 +66,9 @@ export default function App() {
           required
         />
       </label>
+      <br />
       <div className="GuestContainer">
-        {users.map((user, index) => {
+        {guest.map((user, index) => {
           return (
             <div key={`user-id-${user.id} `}>
               <div data-test-id="guest">
@@ -72,15 +81,17 @@ export default function App() {
                   X
                 </button>
                 <br />
-                <input
-                  type="checkbox"
-                  aria-label="attending"
-                  checked={attending}
-                  onChange={(event) => {
-                    setAttending(event.currentTarget.checked);
-                  }}
-                />
-                <div>{user.attend}</div>
+                <div>
+                  <input
+                    type="checkbox"
+                    aria-label="attending"
+                    checked={user.attend}
+                    onChange={() => {
+                      handleGuestAttend(index);
+                    }}
+                  />
+                  {user.attend ? 'attending' : 'not attending'}
+                </div>
               </div>
             </div>
           );
