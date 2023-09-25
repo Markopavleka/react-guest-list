@@ -154,35 +154,36 @@ export default function App() {
       <h1>Guest List</h1>
       <label htmlFor="First name" data-test-id="guest">
         First name
-        <input
-          data-test-id="guest"
-          placeholder="First name"
-          value={guestName}
-          onChange={(event) => {
-            setGuestName(event.currentTarget.value);
-          }}
-          required
-        />
       </label>
+      <input
+        data-test-id="guest"
+        placeholder="First name"
+        value={guestName}
+        onChange={(event) => {
+          setGuestName(event.currentTarget.value);
+        }}
+        required
+      />
+
       <br />
 
       <label htmlFor="Last name" data-test-id="guest">
         Last name
-        <input
-          data-test-id="guest"
-          placeholder="Last name"
-          value={guestLastName}
-          onChange={(event) => {
-            setGuestLastName(event.currentTarget.value);
-          }}
-          onKeyDown={async (event) => {
-            if (event.key === 'Enter') {
-              await sendGuestData(guestName, guestLastName);
-            }
-          }}
-          required
-        />
       </label>
+      <input
+        data-test-id="guest"
+        placeholder="Last name"
+        value={guestLastName}
+        onChange={(event) => {
+          setGuestLastName(event.currentTarget.value);
+        }}
+        onKeyDown={async (event) => {
+          if (event.key === 'Enter') {
+            await sendGuestData(guestName, guestLastName);
+          }
+        }}
+        required
+      />
 
       <br />
       <div className="GuestContainer">
