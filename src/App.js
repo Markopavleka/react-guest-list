@@ -1,7 +1,8 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 
-const baseUrl = 'http://localhost:4000';
+const baseUrl =
+  'http://express-guest-list-api-memory-data-store-1--markopavleka.repl.co/';
 
 export default function App() {
   const [guestName, setGuestName] = useState('');
