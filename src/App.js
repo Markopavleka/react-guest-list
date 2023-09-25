@@ -24,7 +24,7 @@ export default function App() {
       .catch((error) => {
         console.error(error);
       });
-  }, [guest]);
+  }, []);
 
   if (isLoading) {
     return 'Loading...';
@@ -51,7 +51,7 @@ export default function App() {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-
+      setGuest([...guest, responseData]);
       setGuestName('');
       setGuestLastName('');
     } catch (error) {
