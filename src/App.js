@@ -152,7 +152,7 @@ export default function App() {
   return (
     <div className="Container">
       <h1>Guest List</h1>
-      <label htmlFor="firstName" data-test-id="guest">
+      <label htmlFor="First name" data-test-id="guest">
         First name:
         <br />
         <input
@@ -167,7 +167,7 @@ export default function App() {
       </label>
       <br />
 
-      <label htmlFor="lastName" data-test-id="guest">
+      <label htmlFor="Last name" data-test-id="guest">
         Last name:
         <br />
         <input
