@@ -153,7 +153,7 @@ export default function App() {
     <div className="Container">
       <h1>Guest List</h1>
       <label htmlFor="First name" data-test-id="guest">
-        <p>First name:</p>
+        First name
         <input
           data-test-id="guest"
           placeholder="First name"
@@ -167,8 +167,7 @@ export default function App() {
       <br />
 
       <label htmlFor="Last name" data-test-id="guest">
-        <p>Last name:</p>
-
+        Last name
         <input
           data-test-id="guest"
           placeholder="Last name"
