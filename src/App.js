@@ -156,7 +156,6 @@ export default function App() {
       <label htmlFor="First name">
         First name
         <input
-          data-test-id="guest"
           placeholder="First name"
           value={guestName}
           onChange={(event) => {
@@ -170,7 +169,6 @@ export default function App() {
       <label htmlFor="Last name">
         Last name
         <input
-          data-test-id="guest"
           placeholder="Last name"
           value={guestLastName}
           onChange={(event) => {
